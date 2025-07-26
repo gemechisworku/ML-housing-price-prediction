@@ -19,7 +19,7 @@ def save_object(file_path, obj):
     except Exception as e:
         raise CustomException.CustomException(e, sys) from e
     
-def evaluate_model(X_train, y_train, X_test, y_test, models):
+def evaluate_model(X_train, y_train, X_test, y_test, models, params):
     """
     This function evaluates multiple models and returns the best model based on R2 score.
     """
@@ -27,16 +27,16 @@ def evaluate_model(X_train, y_train, X_test, y_test, models):
     try:
         for i in range(len(list(models))):
             model = list(models.values())[i]
-            # param = params[list(models.keys())[i]]
+            param = params[list(models.keys())[i]]
 
-            # gs = GridSearchCV(
-            #     estimator=model,
-            #     # param_grid=param,
-            #     cv=3
-            # )
-            model.fit(X_train, y_train)
-            # model.set_params(**model.best_params_)
-            # print("Best params for model {}: {}".format(list(models.keys())[i], model.best_params_))
+            gs = GridSearchCV(
+                estimator=model,
+                param_grid=param,
+                cv=3
+            )
+            gs.fit(X_train, y_train)
+            model.set_params(**gs.best_params_)
+            print("Best params for model {}: {}".format(list(models.keys())[i], gs.best_params_))
 
             model.fit(X_train, y_train) # Train model
 
