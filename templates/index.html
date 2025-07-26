@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Housing Price Predictor</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      scroll-behavior: smooth;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.10);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .btn-glow {
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+    }
+  </style>
+</head>
+<body class="text-white font-sans pt-16 pb-16">
+
+  <!-- Navigation Bar -->
+  <nav class="fixed top-0 left-0 w-full z-50 bg-gray-800 bg-opacity-70 backdrop-blur border-b border-white border-opacity-10">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="text-lg font-bold text-teal-300">🏠 Price Predictor</div>
+      <ul class="flex space-x-6 text-sm font-medium">
+        <li><a href="#about" class="hover:text-teal-400 transition">About</a></li>
+        <li><a href="#contact" class="hover:text-teal-400 transition">Contact</a></li>
+        <li><a href="{{ url_for('predict_datapoint') }}" class="hover:text-teal-400 transition">Predict</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="min-h-screen flex items-center justify-center px-6">
+    <div class="text-center max-w-3xl glass p-10 rounded-2xl shadow-xl">
+      <h1 class="text-4xl md:text-5xl font-bold text-teal-200 mb-4">Housing Price Predictor</h1>
+      <p class="text-lg text-gray-200 mb-6">
+        An intelligent machine learning tool to estimate residential housing prices based on key property features.
+      </p>
+      <h2 class="text-xl font-semibold text-cyan-300 mb-2">Why Use This App?</h2>
+      <p class="text-gray-300 mb-8">
+        Whether you're a buyer, seller, or real estate analyst — this tool helps estimate housing values based on size, rooms, amenities, and location access.
+      </p>
+      <a href="{{ url_for('predict_datapoint') }}" class="inline-block px-8 py-3 bg-gradient-to-r from-teal-400 to-blue-500 rounded-full hover:scale-105 transition transform duration-300 shadow-md btn-glow text-white font-semibold">
+        🏡 Predict My Home Price
+      </a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 px-6">
+    <div class="max-w-4xl mx-auto glass p-8 rounded-xl">
+      <h2 class="text-3xl font-bold text-center text-teal-100 mb-6">About This Project</h2>
+      <p class="text-gray-200 text-center mb-4 text-lg">
+        The Housing Price Predictor uses a trained regression model to estimate house prices using real estate attributes from a curated dataset.
+      </p>
+      <h3 class="text-xl text-cyan-300 font-semibold mt-6 mb-2 text-center">🛠️ How It Works</h3>
+      <ul class="text-gray-300 list-disc list-inside space-y-2 max-w-xl mx-auto">
+        <li><strong>Input:</strong> Fill in property details like area, number of bedrooms, bathrooms, stories, and parking spaces.</li>
+        <li><strong>Amenities:</strong> Specify availability of guest room, basement, hot water heating, air conditioning, and more.</li>
+        <li><strong>Model:</strong> A regression model trained on historical housing data calculates the predicted price.</li>
+        <li><strong>Result:</strong> The estimated market price is displayed instantly for decision-making.</li>
+      </ul>
+      <p class="text-center mt-6 text-gray-400 italic">Data-backed property valuation — made simple and fast.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 px-6">
+    <div class="max-w-4xl mx-auto glass p-8 rounded-xl">
+      <h2 class="text-3xl font-bold text-center text-teal-100 mb-4">Contact</h2>
+      <p class="text-gray-200 text-center mb-4">
+        Got questions, feedback, or collaboration ideas?
+      </p>
+      <div class="text-center text-gray-300 space-y-2">
+        📧 Email: <a href="mailto:game.worku@gmail.com" class="underline text-teal-300">game.worku@gmail.com</a><br>
+        💼 LinkedIn: <a href="https://www.linkedin.com/in/gemechisw" class="underline text-teal-300" target="_blank">linkedin.com/in/gemechisw</a><br>
+        🐙 GitHub: <a href="https://github.com/gemechisworku/ML-housing-price-prediction" class="underline text-teal-300" target="_blank">GitHub Repo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="fixed bottom-0 left-0 w-full bg-gray-900 bg-opacity-60 backdrop-blur text-center text-sm text-gray-400 py-3 border-t border-white border-opacity-10 z-50">
+    © 2025 Housing Predictor. Built by Gemechis Worku
+  </footer>
+</body>
+</html>

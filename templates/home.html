@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Housing Price Predictor</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.10);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    select, input {
+      color: #111 !important;
+    }
+    .btn-glow {
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen px-4 text-white font-sans">
+  <div class="w-full max-w-2xl p-8 glass shadow-xl">
+    <h1 class="text-3xl font-bold text-center mb-6 text-teal-200">🏠 Housing Price Predictor</h1>
+    <form action="{{ url_for('predict_datapoint')}}" method="post" class="space-y-4">
+      <fieldset>
+        <legend class="text-xl font-semibold text-center mb-4">Property Details</legend>
+
+        <!-- Area -->
+        <div>
+          <label class="block mb-1 text-sm">Total Area (in sq. ft)</label>
+          <input type="number" name="area" required placeholder="e.g. 2400" class="w-full p-2 rounded bg-white bg-opacity-90 text-black" />
+        </div>
+
+        <!-- Bedrooms -->
+        <div>
+          <label class="block mb-1 text-sm">Number of Bedrooms</label>
+          <input type="number" name="bedrooms" required placeholder="e.g. 3" class="w-full p-2 rounded bg-white bg-opacity-90 text-black" />
+        </div>
+
+        <!-- Bathrooms -->
+        <div>
+          <label class="block mb-1 text-sm">Number of Bathrooms</label>
+          <input type="number" name="bathrooms" required placeholder="e.g. 2" class="w-full p-2 rounded bg-white bg-opacity-90 text-black" />
+        </div>
+
+        <!-- Stories -->
+        <div>
+          <label class="block mb-1 text-sm">Number of Stories</label>
+          <input type="number" name="stories" required placeholder="e.g. 2" class="w-full p-2 rounded bg-white bg-opacity-90 text-black" />
+        </div>
+
+        <!-- Parking -->
+        <div>
+          <label class="block mb-1 text-sm">Parking Spaces</label>
+          <input type="number" name="parking" required placeholder="e.g. 1" class="w-full p-2 rounded bg-white bg-opacity-90 text-black" />
+        </div>
+
+        <!-- Amenities -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block mb-1 text-sm">Main Road Access</label>
+            <select name="mainroad" required class="w-full p-2 rounded bg-white bg-opacity-90 text-black">
+              <option disabled selected>Select Option</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+          <div>
+            <label class="block mb-1 text-sm">Guest Room</label>
+            <select name="guestroom" required class="w-full p-2 rounded bg-white bg-opacity-90 text-black">
+              <option disabled selected>Select Option</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+          <div>
+            <label class="block mb-1 text-sm">Basement</label>
+            <select name="basement" required class="w-full p-2 rounded bg-white bg-opacity-90 text-black">
+              <option disabled selected>Select Option</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+          <div>
+            <label class="block mb-1 text-sm">Hot Water Heating</label>
+            <select name="hotwaterheating" required class="w-full p-2 rounded bg-white bg-opacity-90 text-black">
+              <option disabled selected>Select Option</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+          <div>
+            <label class="block mb-1 text-sm">Air Conditioning</label>
+            <select name="airconditioning" required class="w-full p-2 rounded bg-white bg-opacity-90 text-black">
+              <option disabled selected>Select Option</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+          <div>
+            <label class="block mb-1 text-sm">Preferred Area</label>
+            <select name="prefarea" required class="w-full p-2 rounded bg-white bg-opacity-90 text-black">
+              <option disabled selected>Select Option</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+          <div>
+            <label class="block mb-1 text-sm">Furnishing Status</label>
+            <select name="furnishingstatus" required class="w-full p-2 rounded bg-white bg-opacity-90 text-black">
+              <option disabled selected>Select Option</option>
+              <option value="furnished">Furnished</option>
+              <option value="semi-furnished">Semi-furnished</option>
+              <option value="unfurnished">Unfurnished</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-center pt-6">
+          <button type="submit" class="px-6 py-2 bg-gradient-to-r from-teal-400 to-blue-500 rounded-full hover:scale-105 transition duration-300 text-white font-semibold shadow-md btn-glow">
+            🧮 Predict Housing Price
+          </button>
+        </div>
+      </fieldset>
+    </form>
+
+    {% if results %}
+    <div class="mt-6 text-center text-xl text-green-200 font-bold">
+      🏷️ Estimated Price: $ {{ "{:,.2f}".format(results) }}
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>
