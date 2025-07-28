@@ -4,7 +4,7 @@
 
 ML-housing-price-prediction is a machine learning project that predicts housing prices based on various features such as location, size, number of rooms, and more. The project demonstrates data preprocessing, feature engineering, model selection, training, and evaluation.
 
-## Features
+## The project contains
 
 - Data cleaning and preprocessing (handling missing values, outliers, encoding categorical variables)
 - Prediction pipeline via Flask App (REST API for real-time price prediction)
