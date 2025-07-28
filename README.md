@@ -30,7 +30,7 @@ ML-housing-price-prediction is a machine learning project that predicts housing 
     ```
     python application.py
     ```
-3. View results and visualizations in the `output/` directory.
+3. Visit http://127.0.0.1:5000/ to access the app and perform predictions
 
 ## Project Structure
 
